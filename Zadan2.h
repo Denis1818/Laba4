@@ -4,46 +4,47 @@
 #include <iostream>
 
 class Quadratic2 {
+public:
+    // ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г°Г»
+    Quadratic2();
+    Quadratic2(double a, double b, double c);
+    Quadratic2(const Quadratic2& other);
+
+    // ГѓГҐГІГІГҐГ°Г»
+    double GetA() const;
+    double GetB() const;
+    double GetC() const;
+
+    // Г‘ГҐГІГІГҐГ°Г»
+    void SetA(double a);
+    void SetB(double b);
+    void SetC(double c);
+
+    // ГЊГҐГІГ®Г¤ Г¤Г«Гї Г­Г ГµГ®Г¦Г¤ГҐГ­ГЁГї ГЄГ®Г°Г­ГҐГ© ГЄГўГ Г¤Г°Г ГІГ­Г®ГЈГ® ГіГ°Г ГўГ­ГҐГ­ГЁГї
+    double* FindRoots() const;
+
+    // Г“Г­Г Г°Г­Г»ГҐ Г®ГЇГҐГ°Г Г¶ГЁГЁ
+    Quadratic2& operator++();     // ГЏГ°ГҐГґГЁГЄГ±Г­Г»Г© ++
+    Quadratic2 operator++(int);   // ГЏГ®Г±ГІГґГЁГЄГ±Г­Г»Г© ++
+    Quadratic2& operator--();     // ГЏГ°ГҐГґГЁГЄГ±Г­Г»Г© --
+    Quadratic2 operator--(int);   // ГЏГ®Г±ГІГґГЁГЄГ±Г­Г»Г© --
+
+    // ГЋГЇГҐГ°Г Г¶ГЁГЁ ГЇГ°ГЁГўГҐГ¤ГҐГ­ГЁГї ГІГЁГЇГ 
+    operator double() const;      // ГЌГҐГїГўГ­Г®ГҐ Гў double (Г¤ГЁГ±ГЄГ°ГЁГ¬ГЁГ­Г Г­ГІ)
+    explicit operator bool() const;  // ГџГўГ­Г®ГҐ Гў bool (Г±ГіГ№ГҐГ±ГІГўГ®ГўГ Г­ГЁГҐ ГЄГ®Г°Г­ГҐГ©)
+
+    // ГЃГЁГ­Г Г°Г­Г»ГҐ Г®ГЇГҐГ°Г Г¶ГЁГЁ
+    bool operator==(const Quadratic2& other) const;  // ==
+    bool operator!=(const Quadratic2& other) const;  // !=
+
+    // ГЏГҐГ°ГҐГЈГ°ГіГ§ГЄГ  Г®ГЇГҐГ°Г ГІГ®Г°Г  ГўГ»ГўГ®Г¤Г 
+    friend std::ostream& operator<<(std::ostream& os, const Quadratic2& eq);
 private:
     double a_;
     double b_;
     double c_;
 
-public:
-    // Конструкторы
-    Quadratic2();
-    Quadratic2(double a, double b, double c);
-    Quadratic2(const Quadratic2& other);
-
-    // Геттеры
-    double GetA() const;
-    double GetB() const;
-    double GetC() const;
-
-    // Сеттеры
-    void SetA(double a);
-    void SetB(double b);
-    void SetC(double c);
-
-    // Метод для нахождения корней квадратного уравнения
-    double* FindRoots() const;
-
-    // Унарные операции
-    Quadratic2& operator++();     // Префиксный ++
-    Quadratic2 operator++(int);   // Постфиксный ++
-    Quadratic2& operator--();     // Префиксный --
-    Quadratic2 operator--(int);   // Постфиксный --
-
-    // Операции приведения типа
-    operator double() const;      // Неявное в double (дискриминант)
-    explicit operator bool() const;  // Явное в bool (существование корней)
-
-    // Бинарные операции
-    bool operator==(const Quadratic2& other) const;  // ==
-    bool operator!=(const Quadratic2& other) const;  // !=
-
-    // Перегрузка оператора вывода
-    friend std::ostream& operator<<(std::ostream& os, const Quadratic2& eq);
 };
+
 
 #endif
