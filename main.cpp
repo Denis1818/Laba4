@@ -2,204 +2,204 @@
 #include <string>
 #include <windows.h>
 
-#include "Zadan1.h"
-#include "Zadan2.h"
+// РџРѕРґРєР»СЋС‡Р°РµРј РїРµСЂРµРёРјРµРЅРѕРІР°РЅРЅС‹Рµ С„Р°Р№Р»С‹
+#include "quadratic_base.h"
+#include "quadratic_operators.h"
 
 void SetupConsole() {
-    SetConsoleOutputCP(65001);
-    SetConsoleCP(65001);
+  SetConsoleOutputCP(65001);
+  SetConsoleCP(65001);
 }
 
-// Функции для ввода с проверкой
+// Р¤СѓРЅРєС†РёРё РґР»СЏ РІРІРѕРґР° СЃ РїСЂРѕРІРµСЂРєРѕР№
 double InputDouble(const std::string& prompt) {
-    double value;
-    const int kMaxIgnore = 10000;
+  double value;
+  const int kMaxIgnore = 10000;
 
-    while (true) {
-        std::cout << prompt;
-        if (std::cin >> value) {
-            break;
-        }
-        else {
-            std::cout << "Ошибка: введите корректное число!" << std::endl;
-            std::cin.clear();
-            std::cin.ignore(kMaxIgnore, '\n');
-        }
+  while (true) {
+    std::cout << prompt;
+    if (std::cin >> value) {
+      break;
+    } else {
+      std::cout << "РћС€РёР±РєР°: РІРІРµРґРёС‚Рµ РєРѕСЂСЂРµРєС‚РЅРѕРµ С‡РёСЃР»Рѕ!" << std::endl;
+      std::cin.clear();
+      std::cin.ignore(kMaxIgnore, '\n');
     }
-    return value;
+  }
+  return value;
 }
 
-// Функция для задачи 1 (базовый класс)
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ Р·Р°РґР°С‡Рё 1 (Р±Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ)
 void Task1() {
-    std::cout << "\n=== ЗАДАЧА 1: Quadratic1 (Базовый класс) ===" << std::endl;
+  std::cout << "\n=== Р—РђР”РђР§Рђ 1: QuadraticBase (Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ) ===" << std::endl;
 
-    // Тест 1: Конструктор по умолчанию
-    std::cout << "\n1. Тестирование конструктора по умолчанию:" << std::endl;
-    Quadratic1 eq1;
-    std::cout << "Создано уравнение: " << eq1 << std::endl;
-    double* roots1 = eq1.FindRoots();
-    std::cout << "Корни уравнения: " << roots1[0] << ", " << roots1[1] << std::endl;
+  // РўРµСЃС‚ 1: РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+  std::cout << "\n1. РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ:" << std::endl;
+  QuadraticBase eq1;
+  std::cout << "РЎРѕР·РґР°РЅРѕ СѓСЂР°РІРЅРµРЅРёРµ: " << eq1 << std::endl;
+  double* roots1 = eq1.FindRoots();
+  std::cout << "РљРѕСЂРЅРё СѓСЂР°РІРЅРµРЅРёСЏ: " << roots1[0] << ", " << roots1[1] << std::endl;
 
-    // Тест 2: Конструктор с параметрами
-    std::cout << "\n2. Тестирование конструктора с параметрами:" << std::endl;
-    double a1 = InputDouble("Введите коэффициент a: ");
-    double b1 = InputDouble("Введите коэффициент b: ");
-    double c1 = InputDouble("Введите коэффициент c: ");
-    Quadratic1 eq2(a1, b1, c1);
-    std::cout << "Создано уравнение: " << eq2 << std::endl;
-    double* roots2 = eq2.FindRoots();
-    std::cout << "Корни уравнения: " << roots2[0] << ", " << roots2[1] << std::endl;
+  // РўРµСЃС‚ 2: РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё
+  std::cout << "\n2. РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° СЃ РїР°СЂР°РјРµС‚СЂР°РјРё:" << std::endl;
+  double a1 = InputDouble("Р’РІРµРґРёС‚Рµ РєРѕСЌС„С„РёС†РёРµРЅС‚ a: ");
+  double b1 = InputDouble("Р’РІРµРґРёС‚Рµ РєРѕСЌС„С„РёС†РёРµРЅС‚ b: ");
+  double c1 = InputDouble("Р’РІРµРґРёС‚Рµ РєРѕСЌС„С„РёС†РёРµРЅС‚ c: ");
+  QuadraticBase eq2(a1, b1, c1);
+  std::cout << "РЎРѕР·РґР°РЅРѕ СѓСЂР°РІРЅРµРЅРёРµ: " << eq2 << std::endl;
+  double* roots2 = eq2.FindRoots();
+  std::cout << "РљРѕСЂРЅРё СѓСЂР°РІРЅРµРЅРёСЏ: " << roots2[0] << ", " << roots2[1] << std::endl;
 
-    // Тест 3: Конструктор копирования
-    std::cout << "\n3. Тестирование конструктора копирования:" << std::endl;
-    Quadratic1 eq3(eq2);
-    std::cout << "Скопировано уравнение: " << eq3 << std::endl;
-    double* roots3 = eq3.FindRoots();
-    std::cout << "Корни уравнения: " << roots3[0] << ", " << roots3[1] << std::endl;
+  // РўРµСЃС‚ 3: РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
+  std::cout << "\n3. РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° РєРѕРїРёСЂРѕРІР°РЅРёСЏ:" << std::endl;
+  QuadraticBase eq3(eq2);
+  std::cout << "РЎРєРѕРїРёСЂРѕРІР°РЅРѕ СѓСЂР°РІРЅРµРЅРёРµ: " << eq3 << std::endl;
+  double* roots3 = eq3.FindRoots();
+  std::cout << "РљРѕСЂРЅРё СѓСЂР°РІРЅРµРЅРёСЏ: " << roots3[0] << ", " << roots3[1] << std::endl;
 
-    // Тест 4: Сеттеры и геттеры
-    std::cout << "\n4. Тестирование сеттеров и геттеров:" << std::endl;
-    Quadratic1 eq4;
-    double new_a = InputDouble("Введите новый коэффициент a: ");
-    double new_b = InputDouble("Введите новый коэффициент b: ");
-    double new_c = InputDouble("Введите новый коэффициент c: ");
-    eq4.SetA(new_a);
-    eq4.SetB(new_b);
-    eq4.SetC(new_c);
-    std::cout << "Уравнение после изменений: " << eq4 << std::endl;
-    std::cout << "Коэффициенты (через геттеры): a=" << eq4.GetA()
-        << ", b=" << eq4.GetB() << ", c=" << eq4.GetC() << std::endl;
-    double* roots4 = eq4.FindRoots();
-    std::cout << "Корни уравнения: " << roots4[0] << ", " << roots4[1] << std::endl;
+  // РўРµСЃС‚ 4: РЎРµС‚С‚РµСЂС‹ Рё РіРµС‚С‚РµСЂС‹
+  std::cout << "\n4. РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ СЃРµС‚С‚РµСЂРѕРІ Рё РіРµС‚С‚РµСЂРѕРІ:" << std::endl;
+  QuadraticBase eq4;
+  double new_a = InputDouble("Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Р№ РєРѕСЌС„С„РёС†РёРµРЅС‚ a: ");
+  double new_b = InputDouble("Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Р№ РєРѕСЌС„С„РёС†РёРµРЅС‚ b: ");
+  double new_c = InputDouble("Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Р№ РєРѕСЌС„С„РёС†РёРµРЅС‚ c: ");
+  eq4.SetA(new_a);
+  eq4.SetB(new_b);
+  eq4.SetC(new_c);
+  std::cout << "РЈСЂР°РІРЅРµРЅРёРµ РїРѕСЃР»Рµ РёР·РјРµРЅРµРЅРёР№: " << eq4 << std::endl;
+  std::cout << "РљРѕСЌС„С„РёС†РёРµРЅС‚С‹ (С‡РµСЂРµР· РіРµС‚С‚РµСЂС‹): a=" << eq4.GetA()
+            << ", b=" << eq4.GetB() << ", c=" << eq4.GetC() << std::endl;
+  double* roots4 = eq4.FindRoots();
+  std::cout << "РљРѕСЂРЅРё СѓСЂР°РІРЅРµРЅРёСЏ: " << roots4[0] << ", " << roots4[1] << std::endl;
 
-    std::cout << "\nЗадача 1 завершена успешно!" << std::endl;
+  std::cout << "\nР—Р°РґР°С‡Р° 1 Р·Р°РІРµСЂС€РµРЅР° СѓСЃРїРµС€РЅРѕ!" << std::endl;
 }
 
-// Функция для задачи 2 (класс с перегруженными операциями)
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ Р·Р°РґР°С‡Рё 2 (РєР»Р°СЃСЃ СЃ РїРµСЂРµРіСЂСѓР¶РµРЅРЅС‹РјРё РѕРїРµСЂР°С†РёСЏРјРё)
 void Task2() {
-    std::cout << "\n=== ЗАДАЧА 2: Quadratic2 С ПЕРЕГРУЖЕННЫМИ ОПЕРАЦИЯМИ ===" << std::endl;
+  std::cout << "\n=== Р—РђР”РђР§Рђ 2: QuadraticOperators РЎ РџР•Р Р•Р“Р РЈР–Р•РќРќР«РњР РћРџР•Р РђР¦РРЇРњР ===" << std::endl;
 
-    // Создание тестовых уравнений
-    std::cout << "\n1. Создание тестовых уравнений:" << std::endl;
-    double a1 = InputDouble("Введите коэффициент a для уравнения 1: ");
-    double b1 = InputDouble("Введите коэффициент b для уравнения 1: ");
-    double c1 = InputDouble("Введите коэффициент c для уравнения 1: ");
-    Quadratic2 eq1(a1, b1, c1);
-    std::cout << "Создано уравнение 1: " << eq1 << std::endl;
+  // РЎРѕР·РґР°РЅРёРµ С‚РµСЃС‚РѕРІС‹С… СѓСЂР°РІРЅРµРЅРёР№
+  std::cout << "\n1. РЎРѕР·РґР°РЅРёРµ С‚РµСЃС‚РѕРІС‹С… СѓСЂР°РІРЅРµРЅРёР№:" << std::endl;
+  double a1 = InputDouble("Р’РІРµРґРёС‚Рµ РєРѕСЌС„С„РёС†РёРµРЅС‚ a РґР»СЏ СѓСЂР°РІРЅРµРЅРёСЏ 1: ");
+  double b1 = InputDouble("Р’РІРµРґРёС‚Рµ РєРѕСЌС„С„РёС†РёРµРЅС‚ b РґР»СЏ СѓСЂР°РІРЅРµРЅРёСЏ 1: ");
+  double c1 = InputDouble("Р’РІРµРґРёС‚Рµ РєРѕСЌС„С„РёС†РёРµРЅС‚ c РґР»СЏ СѓСЂР°РІРЅРµРЅРёСЏ 1: ");
+  QuadraticOperators eq1(a1, b1, c1);
+  std::cout << "РЎРѕР·РґР°РЅРѕ СѓСЂР°РІРЅРµРЅРёРµ 1: " << eq1 << std::endl;
 
-    double a2 = InputDouble("Введите коэффициент a для уравнения 2: ");
-    double b2 = InputDouble("Введите коэффициент b для уравнения 2: ");
-    double c2 = InputDouble("Введите коэффициент c для уравнения 2: ");
-    Quadratic2 eq2(a2, b2, c2);
-    std::cout << "Создано уравнение 2: " << eq2 << std::endl;
+  double a2 = InputDouble("Р’РІРµРґРёС‚Рµ РєРѕСЌС„С„РёС†РёРµРЅС‚ a РґР»СЏ СѓСЂР°РІРЅРµРЅРёСЏ 2: ");
+  double b2 = InputDouble("Р’РІРµРґРёС‚Рµ РєРѕСЌС„С„РёС†РёРµРЅС‚ b РґР»СЏ СѓСЂР°РІРЅРµРЅРёСЏ 2: ");
+  double c2 = InputDouble("Р’РІРµРґРёС‚Рµ РєРѕСЌС„С„РёС†РёРµРЅС‚ c РґР»СЏ СѓСЂР°РІРЅРµРЅРёСЏ 2: ");
+  QuadraticOperators eq2(a2, b2, c2);
+  std::cout << "РЎРѕР·РґР°РЅРѕ СѓСЂР°РІРЅРµРЅРёРµ 2: " << eq2 << std::endl;
 
-    // Тестирование ударных операций
-    std::cout << "\n2. Тестирование ударных операций:" << std::endl;
+  // РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ СѓРЅР°СЂРЅС‹С… РѕРїРµСЂР°С†РёР№
+  std::cout << "\n2. РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ СѓРЅР°СЂРЅС‹С… РѕРїРµСЂР°С†РёР№:" << std::endl;
 
-    // Префиксный ++
-    std::cout << "Префиксный ++eq1:" << std::endl;
-    std::cout << "До: " << eq1 << std::endl;
-    Quadratic2 eq1_prefix = ++eq1;
-    std::cout << "После: " << eq1 << std::endl;
-    std::cout << "Результат: " << eq1_prefix << std::endl;
+  // РџСЂРµС„РёРєСЃРЅС‹Р№ ++
+  std::cout << "РџСЂРµС„РёРєСЃРЅС‹Р№ ++eq1:" << std::endl;
+  std::cout << "Р”Рѕ: " << eq1 << std::endl;
+  QuadraticOperators eq1_prefix = ++eq1;
+  std::cout << "РџРѕСЃР»Рµ: " << eq1 << std::endl;
+  std::cout << "Р РµР·СѓР»СЊС‚Р°С‚: " << eq1_prefix << std::endl;
 
-    // Постфиксный ++
-    std::cout << "\nПостфиксный eq2++:" << std::endl;
-    std::cout << "До: " << eq2 << std::endl;
-    Quadratic2 eq2_postfix = eq2++;
-    std::cout << "После: " << eq2 << std::endl;
-    std::cout << "Результат: " << eq2_postfix << std::endl;
+  // РџРѕСЃС‚С„РёРєСЃРЅС‹Р№ ++
+  std::cout << "\nРџРѕСЃС‚С„РёРєСЃРЅС‹Р№ eq2++:" << std::endl;
+  std::cout << "Р”Рѕ: " << eq2 << std::endl;
+  QuadraticOperators eq2_postfix = eq2++;
+  std::cout << "РџРѕСЃР»Рµ: " << eq2 << std::endl;
+  std::cout << "Р РµР·СѓР»СЊС‚Р°С‚: " << eq2_postfix << std::endl;
 
-    // Префиксный --
-    std::cout << "\nПрефиксный --eq1:" << std::endl;
-    std::cout << "До: " << eq1 << std::endl;
-    Quadratic2 eq1_prefix_dec = --eq1;
-    std::cout << "После: " << eq1 << std::endl;
-    std::cout << "Результат: " << eq1_prefix_dec << std::endl;
+  // РџСЂРµС„РёРєСЃРЅС‹Р№ --
+  std::cout << "\nРџСЂРµС„РёРєСЃРЅС‹Р№ --eq1:" << std::endl;
+  std::cout << "Р”Рѕ: " << eq1 << std::endl;
+  QuadraticOperators eq1_prefix_dec = --eq1;
+  std::cout << "РџРѕСЃР»Рµ: " << eq1 << std::endl;
+  std::cout << "Р РµР·СѓР»СЊС‚Р°С‚: " << eq1_prefix_dec << std::endl;
 
-    // Постфиксный --
-    std::cout << "\nПостфиксный eq2--:" << std::endl;
-    std::cout << "До: " << eq2 << std::endl;
-    Quadratic2 eq2_postfix_dec = eq2--;
-    std::cout << "После: " << eq2 << std::endl;
-    std::cout << "Результат: " << eq2_postfix_dec << std::endl;
+  // РџРѕСЃС‚С„РёРєСЃРЅС‹Р№ --
+  std::cout << "\nРџРѕСЃС‚С„РёРєСЃРЅС‹Р№ eq2--:" << std::endl;
+  std::cout << "Р”Рѕ: " << eq2 << std::endl;
+  QuadraticOperators eq2_postfix_dec = eq2--;
+  std::cout << "РџРѕСЃР»Рµ: " << eq2 << std::endl;
+  std::cout << "Р РµР·СѓР»СЊС‚Р°С‚: " << eq2_postfix_dec << std::endl;
 
-    // Тестирование операций приведения типа
-    std::cout << "\n3. Тестирование операций приведения типа:" << std::endl;
+  // РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РѕРїРµСЂР°С†РёР№ РїСЂРёРІРµРґРµРЅРёСЏ С‚РёРїР°
+  std::cout << "\n3. РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РѕРїРµСЂР°С†РёР№ РїСЂРёРІРµРґРµРЅРёСЏ С‚РёРїР°:" << std::endl;
 
-    // Неявное приведение к double (дискриминант)
-    double discriminant = eq1;
-    std::cout << "Неявное приведение eq1 к double: " << discriminant
-        << " (дискриминант)" << std::endl;
+  // РќРµСЏРІРЅРѕРµ РїСЂРёРІРµРґРµРЅРёРµ Рє double (РґРёСЃРєСЂРёРјРёРЅР°РЅС‚)
+  double discriminant = eq1;
+  std::cout << "РќРµСЏРІРЅРѕРµ РїСЂРёРІРµРґРµРЅРёРµ eq1 Рє double: " << discriminant
+            << " (РґРёСЃРєСЂРёРјРёРЅР°РЅС‚)" << std::endl;
 
-    // Явное приведение к bool (существование корней)
-    bool has_roots = static_cast<bool>(eq1);
-    std::cout << "Явное приведение eq1 к bool: " << (has_roots ? "true" : "false")
-        << " (действительные корни существуют)" << std::endl;
+  // РЇРІРЅРѕРµ РїСЂРёРІРµРґРµРЅРёРµ Рє bool (СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ РєРѕСЂРЅРµР№)
+  bool has_roots = static_cast<bool>(eq1);
+  std::cout << "РЇРІРЅРѕРµ РїСЂРёРІРµРґРµРЅРёРµ eq1 Рє bool: " << (has_roots ? "true" : "false")
+            << " (РґРµР№СЃС‚РІРёС‚РµР»СЊРЅС‹Рµ РєРѕСЂРЅРё СЃСѓС‰РµСЃС‚РІСѓСЋС‚)" << std::endl;
 
-    // Тестирование бинарных операций
-    std::cout << "\n4. Тестирование бинарных операций:" << std::endl;
+  // РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ Р±РёРЅР°СЂРЅС‹С… РѕРїРµСЂР°С†РёР№
+  std::cout << "\n4. РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ Р±РёРЅР°СЂРЅС‹С… РѕРїРµСЂР°С†РёР№:" << std::endl;
 
-    // Сравнение уравнений
-    bool are_equal = (eq1 == eq2);
-    std::cout << "eq1 == eq2: " << (are_equal ? "true" : "false") << std::endl;
+  // РЎСЂР°РІРЅРµРЅРёРµ СѓСЂР°РІРЅРµРЅРёР№
+  bool are_equal = (eq1 == eq2);
+  std::cout << "eq1 == eq2: " << (are_equal ? "true" : "false") << std::endl;
 
-    bool are_not_equal = (eq1 != eq2);
-    std::cout << "eq1 != eq2: " << (are_not_equal ? "true" : "false") << std::endl;
+  bool are_not_equal = (eq1 != eq2);
+  std::cout << "eq1 != eq2: " << (are_not_equal ? "true" : "false") << std::endl;
 
-    // Демонстрация вычисления корней для финальных уравнений
-    std::cout << "\n5. Финальные уравнения и их корни:" << std::endl;
-    std::cout << "Уравнение 1: " << eq1 << std::endl;
-    double* roots1 = eq1.FindRoots();
-    std::cout << "Корни уравнения 1: " << roots1[0] << ", " << roots1[1] << std::endl;
+  // Р”РµРјРѕРЅСЃС‚СЂР°С†РёСЏ РІС‹С‡РёСЃР»РµРЅРёСЏ РєРѕСЂРЅРµР№ РґР»СЏ С„РёРЅР°Р»СЊРЅС‹С… СѓСЂР°РІРЅРµРЅРёР№
+  std::cout << "\n5. Р¤РёРЅР°Р»СЊРЅС‹Рµ СѓСЂР°РІРЅРµРЅРёСЏ Рё РёС… РєРѕСЂРЅРё:" << std::endl;
+  std::cout << "РЈСЂР°РІРЅРµРЅРёРµ 1: " << eq1 << std::endl;
+  double* roots1 = eq1.FindRoots();
+  std::cout << "РљРѕСЂРЅРё СѓСЂР°РІРЅРµРЅРёСЏ 1: " << roots1[0] << ", " << roots1[1] << std::endl;
 
-    std::cout << "Уравнение 2: " << eq2 << std::endl;
-    double* roots2 = eq2.FindRoots();
-    std::cout << "Корни уравнения 2: " << roots2[0] << ", " << roots2[1] << std::endl;
+  std::cout << "РЈСЂР°РІРЅРµРЅРёРµ 2: " << eq2 << std::endl;
+  double* roots2 = eq2.FindRoots();
+  std::cout << "РљРѕСЂРЅРё СѓСЂР°РІРЅРµРЅРёСЏ 2: " << roots2[0] << ", " << roots2[1] << std::endl;
 
-    std::cout << "\nЗадача 2 завершена успешно!" << std::endl;
+  std::cout << "\nР—Р°РґР°С‡Р° 2 Р·Р°РІРµСЂС€РµРЅР° СѓСЃРїРµС€РЅРѕ!" << std::endl;
 }
 
-// Главное меню
+// Р“Р»Р°РІРЅРѕРµ РјРµРЅСЋ
 void ShowMenu() {
-    std::cout << "\n=== ГЛАВНОЕ МЕНЮ ===" << std::endl;
-    std::cout << "1 - Задача 1 (Базовый класс QuadraticEquation)" << std::endl;
-    std::cout << "2 - Задача 2 (Класс QuadraticEquation с перегруженными операциями)" << std::endl;
-    std::cout << "0 - Выход" << std::endl;
-    std::cout << "Выберите задачу: ";
+  std::cout << "\n=== Р“Р›РђР’РќРћР• РњР•РќР® ===" << std::endl;
+  std::cout << "1 - Р—Р°РґР°С‡Р° 1 (Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ QuadraticEquation)" << std::endl;
+  std::cout << "2 - Р—Р°РґР°С‡Р° 2 (РљР»Р°СЃСЃ QuadraticEquation СЃ РїРµСЂРµРіСЂСѓР¶РµРЅРЅС‹РјРё РѕРїРµСЂР°С†РёСЏРјРё)" << std::endl;
+  std::cout << "0 - Р’С‹С…РѕРґ" << std::endl;
+  std::cout << "Р’С‹Р±РµСЂРёС‚Рµ Р·Р°РґР°С‡Сѓ: ";
 }
 
 int main() {
-    setlocale(LC_ALL, "Russian");
-    SetupConsole();
-    int choice = 0;
+  setlocale(LC_ALL, "Russian");
+  SetupConsole();
+  int choice = 0;
 
-    do {
-        ShowMenu();
-        std::cin >> choice;
+  do {
+    ShowMenu();
+    std::cin >> choice;
 
-        switch (choice) {
-        case 1:
-            Task1();
-            break;
-        case 2:
-            Task2();
-            break;
-        case 0:
-            std::cout << "Выход из программы..." << std::endl;
-            break;
-        default:
-            std::cout << "Неверный выбор! Попробуйте снова." << std::endl;
-            break;
-        }
+    switch (choice) {
+      case 1:
+        Task1();
+        break;
+      case 2:
+        Task2();
+        break;
+      case 0:
+        std::cout << "Р’С‹С…РѕРґ РёР· РїСЂРѕРіСЂР°РјРјС‹..." << std::endl;
+        break;
+      default:
+        std::cout << "РќРµРІРµСЂРЅС‹Р№ РІС‹Р±РѕСЂ! РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°." << std::endl;
+        break;
+    }
 
-        if (choice != 0) {
-            std::cout << "\nНажмите Enter для продолжения...";
-            std::cin.ignore();
-            std::cin.get();
-        }
+    if (choice != 0) {
+      std::cout << "\nРќР°Р¶РјРёС‚Рµ Enter РґР»СЏ РїСЂРѕРґРѕР»Р¶РµРЅРёСЏ...";
+      std::cin.ignore();
+      std::cin.get();
+    }
 
-    } while (choice != 0);
+  } while (choice != 0);
 
-    return 0;
+  return 0;
 }
