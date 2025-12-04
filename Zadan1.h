@@ -4,11 +4,6 @@
 #include <iostream>
 
 class Quadratic1 {
-private:
-    double a_;
-    double b_;
-    double c_;
-
 public:
     // Конструкторы
     Quadratic1();
@@ -30,6 +25,12 @@ public:
 
     // Перегрузка оператора вывода
     friend std::ostream& operator<<(std::ostream& os, const Quadratic1& eq);
+private:
+    double a_;
+    double b_;
+    double c_;
+
 };
+
 
 #endif
